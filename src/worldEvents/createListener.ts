@@ -56,7 +56,7 @@ const checkForType = async (eventType: string, client: ClientAndCommands, db: No
 
   if (data && data[0]) return;
 
-  const { error: insertionError } = await db
+  const {error: insertionError} = await db
     .from('events')
     .insert([
       {
@@ -130,7 +130,7 @@ const sendNotifications = async (eventType: EventType, event: EventResponse, cli
     if (!channel || !channel.isTextBased()) return;
     const eventView = getView(eventType);
     try {
-      await channel.send({ embeds: [eventView(event)], content: mentionContent(eventType, sub) });
+      await channel.send({embeds: [eventView(event)], content: mentionContent(eventType, sub)});
     } catch (error) {
       console.error(`Error sending event to ${JSON.stringify(sub)}`);
       console.error(error);
